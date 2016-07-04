@@ -6,6 +6,7 @@ public class Timer : MonoBehaviour {
 
 	public float timer;
 	Text text;
+	Button butt;
 
 	public static Timer Instance;
 	void Awake () {
@@ -15,6 +16,7 @@ public class Timer : MonoBehaviour {
 
 	void Start(){
 		timer = 10.0f;
+		butt = GameObject.Find ("Button").GetComponent<Button>();
 	}
 	
 	// Update is called once per frame
@@ -23,12 +25,15 @@ public class Timer : MonoBehaviour {
 		text.text = "Time Left: " + timer.ToString("0");
 		if (timer <= 0) {
 			timer = 0;
-			ScoreManager.Instance.end ();
 			text.text = "Score: " + ScoreManager.Instance.score;
+			ScoreManager.Instance.end ();
+
+			butt.interactable=false;
 		}
 	}
 
 	public void Retry(){
 		Start ();
+		butt.interactable=true;
 	}
 }
