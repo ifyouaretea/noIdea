@@ -53,7 +53,7 @@ public class loginScript : MonoBehaviour {
             else
             {
 
-                SceneManager.LoadScene("Login Scene");
+                SceneManager.LoadScene("Score");
             }
         }
         else
