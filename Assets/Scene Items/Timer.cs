@@ -25,9 +25,7 @@ public class Timer : MonoBehaviour {
 		text.text = "Time Left: " + timer.ToString("0");
 		if (timer <= 0) {
 			timer = 0;
-			text.text = "Score: " + ScoreManager.Instance.score;
 			ScoreManager.Instance.end ();
-
 			butt.interactable=false;
 		}
 	}
