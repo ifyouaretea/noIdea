@@ -18,22 +18,19 @@ public class islandController : MonoBehaviour {
 	public bool generate;
 
 
-    void Start()
-    {
-        StartCoroutine(SpawnWaves());
+    void Start() {
+		StartCoroutine (SpawnWaves ());
     }
 
     IEnumerator SpawnWaves(){
 		if (generate) {
-			for (int i = 0; i < 20; i++) {
-				Vector3 spawnPosition = new Vector3 (spawnValues.x, spawnValues.y, spawnValues.z);
-				Quaternion spawnRotation = Quaternion.identity;            
-				GameObject shippu = Instantiate (ship) as GameObject;
-				shippu.transform.SetParent (canvas.transform);
-				shippu.transform.localPosition = spawnPosition;
-				shippu.transform.localRotation = spawnRotation;
-				yield return new WaitForSeconds (1);
-			}
+			Vector3 spawnPosition = new Vector3 (spawnValues.x, spawnValues.y, spawnValues.z);
+			Quaternion spawnRotation = Quaternion.identity;            
+			GameObject shippu = Instantiate (ship) as GameObject;
+			shippu.transform.SetParent (canvas.transform);
+			shippu.transform.localPosition = spawnPosition;
+			shippu.transform.localRotation = spawnRotation;
+			yield return new WaitForSeconds (1);
 		}
     }
 
@@ -43,6 +40,10 @@ public class islandController : MonoBehaviour {
 
 	void aiCapture(){
 		this.owner = "ai";
+	}
+
+	void setNeutral(){
+		this.owner = "neutral";
 	}
 
 	void setCapacity(){
