@@ -19,6 +19,7 @@ public class islandController : MonoBehaviour {
 
 
     void Start() {
+		setCapacity ();
 		StartCoroutine (SpawnWaves ());
     }
 
