@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine.UI;
 
-public class rotateAbout : MonoBehaviour {
+public class shipController : MonoBehaviour {
     public Button island;
    
     // Use this for initialization
