@@ -7,6 +7,9 @@ using UnityEngine.Events;
 
 public class swipeController : MonoBehaviour {
 
+    public GameObject src;
+    public GameObject dest;
+
 	// Use this for initialization
 	void Start () {
         
@@ -15,14 +18,8 @@ public class swipeController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        //swipe();
-		PointerEventData cursor = new PointerEventData(EventSystem.current); // This section prepares a list for all objects hit with the raycast
-		cursor.position = Input.mousePosition;
-		List<RaycastResult> objectsHit = new List<RaycastResult> ();
-		EventSystem.current.RaycastAll(cursor, objectsHit);
-		int count = objectsHit.Count;
-		if (count>0)
-			Debug.Log (objectsHit[0]);
+        swipe();
+
     }
 
     //inside class
@@ -56,22 +53,22 @@ public class swipeController : MonoBehaviour {
                 //swipe upwards
                 if (currentSwipe.y > 0 & currentSwipe.x > -0.5f & currentSwipe.x < 0.5f)
              {
-                    Debug.Log("up swipe");
+                    //Debug.Log("up swipe");
                 }
                 //swipe down
                 if (currentSwipe.y < 0 & currentSwipe.x > -0.5f & currentSwipe.x < 0.5f)
              {
-                    Debug.Log("down swipe");
+                    //Debug.Log("down swipe");
                 }
                 //swipe left
                 if (currentSwipe.x < 0 & currentSwipe.y > -0.5f & currentSwipe.y < 0.5f)
              {
-                    Debug.Log("left swipe");
+                    //Debug.Log("left swipe");
                 }
                 //swipe right
                 if (currentSwipe.x > 0 & currentSwipe.y > -0.5f & currentSwipe.y < 0.5f)
              {
-                    Debug.Log("right swipe");
+                    //Debug.Log("right swipe");
                 }
             }
         }
@@ -85,12 +82,29 @@ public class swipeController : MonoBehaviour {
         {
             //save began touch 2d point
             firstPressPos = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
+            PointerEventData cursor = new PointerEventData(EventSystem.current); // This section prepares a list for all objects hit with the raycast
+            cursor.position = Input.mousePosition;
+            List<RaycastResult> objectsHit = new List<RaycastResult>();
+            EventSystem.current.RaycastAll(cursor, objectsHit);
+            int count = objectsHit.Count;
+            if (count > 0)
+                src = objectsHit[0].gameObject;
+                Debug.Log(src);
         }
         if (Input.GetMouseButtonUp(0))
         {
             //save ended touch 2d point
             secondPressPos = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
-            Debug.Log(secondPressPos);
+            //save began touch 2d point
+            firstPressPos = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
+            PointerEventData cursor = new PointerEventData(EventSystem.current); // This section prepares a list for all objects hit with the raycast
+            cursor.position = Input.mousePosition;
+            List<RaycastResult> objectsHit = new List<RaycastResult>();
+            EventSystem.current.RaycastAll(cursor, objectsHit);
+            int count = objectsHit.Count;
+            if (count > 0)
+                dest = objectsHit[0].gameObject;
+            Debug.Log(dest);
             //create vector from the two points
             currentSwipe = new Vector2(secondPressPos.x - firstPressPos.x, secondPressPos.y - firstPressPos.y);
 
@@ -100,22 +114,22 @@ public class swipeController : MonoBehaviour {
             //swipe upwards
             if (currentSwipe.y > 0 & currentSwipe.x > -0.5f & currentSwipe.x < 0.5f)
         {
-                Debug.Log("up swipe");
+                //Debug.Log("up swipe");
             }
             //swipe down
             if (currentSwipe.y < 0 & currentSwipe.x > -0.5f & currentSwipe.x < 0.5f)
         {
-                Debug.Log("down swipe");
+                //Debug.Log("down swipe");
             }
             //swipe left
             if (currentSwipe.x < 0 & currentSwipe.y > -0.5f & currentSwipe.y < 0.5f)
         {
-                Debug.Log("left swipe");
+                //Debug.Log("left swipe");
             }
             //swipe right
             if (currentSwipe.x > 0 & currentSwipe.y > -0.5f & currentSwipe.y < 0.5f)
         {
-                Debug.Log("right swipe");
+                //Debug.Log("right swipe");
             }
         }
     }
