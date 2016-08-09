@@ -17,6 +17,6 @@ public class TimerScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         seconds = (int)((timePerRound)-(Time.time % 60f));
-        counterText.text = seconds.ToString("00");
+        counterText.text = "Time Left: "+seconds.ToString("00");
 	}
 }
