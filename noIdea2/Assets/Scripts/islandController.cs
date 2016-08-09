@@ -1,53 +1,93 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 using System;
+using System.Collections.Generic;
 
-public class islandController : MonoBehaviour {
 
-    public GameObject ship;
+public class islandController : MonoBehaviour
+{
+
+	public GameObject ship;
 	public GameObject island;
-    public Vector3 spawnValues;
-    public Canvas canvas;
-    //public int x;
-    //public int y;
-    //public int z;
+	public Vector3 spawnValues;
+	public Canvas canvas;
 
-	public string owner; //'player', 'ai', 'neutral'
+	//public int x;
+	//public int y;
+	//public int z;
+
+	public string owner;//'player', 'ai', 'neutral'
 	public char size;
 	public int capacity;
 	public bool generate;
-
-
-    void Start() {
+	int maxpop;
+	public List<GameObject> ships;
+	void Start ()
+	{
 		setCapacity ();
+		if (gameObject.tag == "Player")
+			playerCapture ();
+		if (gameObject.tag == "AI")
+			aiCapture ();
+		if (gameObject.tag == "Neutral")
+			setNeutral ();
+		Debug.Log (gameObject.tag);
 		StartCoroutine (SpawnWaves ());
-    }
+	}
 
-    IEnumerator SpawnWaves(){
-		if (generate) {
+	void Update(){
+		
+	}
+
+	IEnumerator SpawnWaves (){
+		while (generate) {
 			Vector3 spawnPosition = new Vector3 (spawnValues.x, spawnValues.y, spawnValues.z);
 			Quaternion spawnRotation = Quaternion.identity;            
 			GameObject shippu = Instantiate (ship) as GameObject;
 			shippu.transform.SetParent (canvas.transform);
 			shippu.transform.localPosition = spawnPosition;
 			shippu.transform.localRotation = spawnRotation;
+			ships.Add (shippu);
+			if (ships.Count > maxpop) {
+				generate = false;
+			}
 			yield return new WaitForSeconds (1);
 		}
-    }
+	}
 
-	void playerCapture(){
+	void playerCapture ()
+	{
 		this.owner = "player";
+		gameObject.tag = "Player";
+		gameObject.GetComponent<Image> ().color = Color.green;
+		generate = true;
+		ships = canvas.GetComponent<playerController> ().ships;
+		canvas.GetComponent<playerController> ().maxPopulation += capacity;
+		maxpop = canvas.GetComponent<playerController> ().maxPopulation;
 	}
 
-	void aiCapture(){
+	void aiCapture ()
+	{
 		this.owner = "ai";
+		gameObject.tag = "AI";
+		GetComponent<Image> ().color = Color.red;
+		generate = true;
+		ships = canvas.GetComponent<aiController> ().ships;
+		canvas.GetComponent<aiController> ().maxPopulation += capacity;
+		maxpop = canvas.GetComponent<aiController> ().maxPopulation;
 	}
 
-	void setNeutral(){
+	void setNeutral ()
+	{
 		this.owner = "neutral";
+		gameObject.tag = "Neutral";
+		GetComponent<Image> ().color = Color.grey;
+		generate = false;
 	}
 
-	void setCapacity(){
+	void setCapacity ()
+	{
 		if (this.size == 's')
 			this.capacity = 10;
 		else if (this.size == 'm')
