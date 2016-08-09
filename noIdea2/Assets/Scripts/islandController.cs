@@ -23,8 +23,7 @@ public class islandController : MonoBehaviour {
         StartCoroutine(SpawnWaves());
     }
 
-    IEnumerator SpawnWaves()
-    {
+    IEnumerator SpawnWaves(){
 		if (generate) {
 			for (int i = 0; i < 20; i++) {
 				Vector3 spawnPosition = new Vector3 (spawnValues.x, spawnValues.y, spawnValues.z);
@@ -37,4 +36,21 @@ public class islandController : MonoBehaviour {
 			}
 		}
     }
+
+	void playerCapture(){
+		this.owner = "player";
+	}
+
+	void aiCapture(){
+		this.owner = "ai";
+	}
+
+	void setCapacity(){
+		if (this.size == 's')
+			this.capacity = 10;
+		else if (this.size == 'm')
+			this.capacity = 15;
+		else if (this.size == 'l')
+			this.capacity = 20;
+	}
 }

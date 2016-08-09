@@ -1,5 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
+using UnityEngine.EventSystems;
+using UnityEngine.Events;
 
 
 public class swipeController : MonoBehaviour {
@@ -12,7 +15,14 @@ public class swipeController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        swipe();
+        //swipe();
+		PointerEventData cursor = new PointerEventData(EventSystem.current); // This section prepares a list for all objects hit with the raycast
+		cursor.position = Input.mousePosition;
+		List<RaycastResult> objectsHit = new List<RaycastResult> ();
+		EventSystem.current.RaycastAll(cursor, objectsHit);
+		int count = objectsHit.Count;
+		if (count>0)
+			Debug.Log (objectsHit[0]);
     }
 
     //inside class
