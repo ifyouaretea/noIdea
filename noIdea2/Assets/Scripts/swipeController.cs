@@ -6,9 +6,10 @@ using UnityEngine.Events;
 
 
 public class swipeController : MonoBehaviour {
-
+    public GameObject ship;
     public GameObject src;
     public GameObject dest;
+    public Canvas canvas;
 
 	// Use this for initialization
 	void Start () {
@@ -110,7 +111,15 @@ public class swipeController : MonoBehaviour {
 
             //normalize the 2d vector
             currentSwipe.Normalize();
-
+            Vector3 spawnPosition = new Vector3(src.transform.position.x, src.transform.position.y, 0);
+            Vector3 endPosition = new Vector3(dest.transform.position.x, dest.transform.position.y, 0);
+            Quaternion spawnRotation = Quaternion.identity;
+            GameObject shippu = Instantiate(ship) as GameObject;
+            shippu.transform.SetParent(canvas.transform);
+            shippu.transform.localPosition = spawnPosition;
+            shippu.transform.localRotation = spawnRotation;
+            shippu.GetComponent<moveAnimation>().StartPosition = spawnPosition;
+            shippu.GetComponent<moveAnimation>().Target = endPosition;
             //swipe upwards
             if (currentSwipe.y > 0 & currentSwipe.x > -0.5f & currentSwipe.x < 0.5f)
         {
