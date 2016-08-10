@@ -15,12 +15,10 @@ public class playerController : MonoBehaviour {
 	void Start(){
         string sceneName = SceneManager.GetActiveScene().name;
         Debug.Log(sceneName);
-        if (sceneName == "Level1")
-        {
+        if (sceneName == "Level1"){
             maxPopulation = 30;
-        }else if (sceneName == "Level 2")
-        {
-            maxPopulation = 160;
+        }else {
+            maxPopulation = 150;
         }
         
 		shipPopulation = 0;
