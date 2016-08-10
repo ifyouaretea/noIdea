@@ -23,4 +23,26 @@ public class TimerScript : MonoBehaviour {
         }
         counterText.text = seconds.ToString("00");
 	}
+
+    public void pause()
+    {
+        Time.timeScale = 0;
+    }
+
+    public void resume()
+    {
+        Time.timeScale = 1;
+    }
+
+    public void togglePauseResume()
+    {
+        if (Time.timeScale == 1)
+        {
+            Time.timeScale = 0;
+        }
+        else
+        {
+            Time.timeScale = 1;
+        }
+    }
 }
