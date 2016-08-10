@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class TimerScript : MonoBehaviour {
 
@@ -20,6 +21,8 @@ public class TimerScript : MonoBehaviour {
         if (seconds == 0)
         {
             Time.timeScale = 0;
+            SceneManager.LoadScene("endScene");
+
         }
         counterText.text = seconds.ToString("00");
 	}
