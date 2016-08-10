@@ -17,6 +17,6 @@ public class playerController : MonoBehaviour {
 
 	void Update(){
 		//updatePopulation ();
-        populationCounter.text = "Population: "+maxPopulation.ToString("00");
+        populationCounter.text = "00/"+maxPopulation.ToString("00");
     }
 }
