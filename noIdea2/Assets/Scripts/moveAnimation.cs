@@ -10,23 +10,23 @@ public class moveAnimation : MonoBehaviour
     public Vector3 StartPosition;
     public GameObject islandSrc;
     public GameObject islandDest;
-    private List<GameObject> numShips;
+    private int numShips;
 	int toMove;
     void Start()
     {
         if (islandSrc.GetComponent<islandController>().owner == "player")
         {
-            numShips = islandSrc.GetComponent<islandController>().localShips;
-            toMove = (int)(0.5 * numShips.Count);
+            numShips = islandSrc.GetComponent<islandController>().curr;
+            toMove = (int)(0.5 * numShips);
             Debug.Log("moving: " + toMove);
-            numShips.RemoveRange(1, toMove);
-            for (int i = toMove - 1; i > (numShips.Count - toMove); i--)
-            {
-                Destroy(numShips[i]);
-            }
-            islandSrc.GetComponent<islandController>().generate = true;
+            //numShips.RemoveRange(1, toMove);
+            //for (int i = toMove - 1; i > (numShips.Count - toMove); i--)
+            //{
+            //    Destroy(numShips[i]);
+            //}
+            islandSrc.GetComponent<islandController>().playerMove(toMove);
 			//islandSrc.GetComponent<islandController>().playerCapture(toMove);
-            Debug.Log(numShips.Count);
+            Debug.Log(numShips);
 
         }
 

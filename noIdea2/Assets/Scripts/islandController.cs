@@ -14,7 +14,7 @@ public class islandController : MonoBehaviour
 	public GameObject canvas;
 
 	int addy;
-	int curr;
+	public int curr;
 	Text current;
 	//public int y;
 	//public int z;
@@ -49,7 +49,10 @@ public class islandController : MonoBehaviour
 
 	IEnumerator SpawnWaves (){
 		while (generate) {
-			curr += curr / 2;
+            if (curr == 1)
+                curr += 1;
+            else
+                curr += curr / 4;
 
 			Vector3 islandLoc = gameObject.transform.localPosition;
 			Vector3 spawnPosition = new Vector3 (islandLoc.x, islandLoc.y+addy,islandLoc.z);
@@ -85,7 +88,14 @@ public class islandController : MonoBehaviour
         this.StartCoroutine(SpawnWaves());
     }
 
-	public void aiCapture ()
+    public void playerMove(int start)
+    {
+        curr -= start;
+        generate = true;
+        this.StartCoroutine(SpawnWaves());
+    }
+
+    public void aiCapture ()
 	{
 		this.owner = "ai";
 		gameObject.tag = "AI";
