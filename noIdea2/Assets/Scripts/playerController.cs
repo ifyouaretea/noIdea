@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 public class playerController : MonoBehaviour {
 	public int maxPopulation;
@@ -12,7 +13,16 @@ public class playerController : MonoBehaviour {
 
 
 	void Start(){
-		maxPopulation = 30;
+        string sceneName = SceneManager.GetActiveScene().name;
+        Debug.Log(sceneName);
+        if (sceneName == "Level1")
+        {
+            maxPopulation = 30;
+        }else if (sceneName == "Level 2")
+        {
+            maxPopulation = 160;
+        }
+        
 		shipPopulation = 0;
     }
 
