@@ -39,16 +39,19 @@ public class moveAnimation : MonoBehaviour
     {
         if (StartPosition != new Vector3(0, 0, 0))
         {
-            ElapsedTime += Time.deltaTime;
-            transform.position = Vector3.MoveTowards(transform.position, Target, Time.deltaTime * 100);
-            if (transform.position == Target & transform.position.y != 0)
+            if (islandSrc.GetComponent<islandController>().owner == "player")
             {
-                Debug.Log(transform.position);
-                Debug.Log(Target);
-				Debug.Log (toMove);
-                Destroy(gameObject);
-				islandDest.GetComponent<islandController> ().playerCapture(toMove);
+                ElapsedTime += Time.deltaTime;
+                transform.position = Vector3.MoveTowards(transform.position, Target, Time.deltaTime * 100);
+                if (transform.position == Target & transform.position.y != 0)
+                {
+                    Debug.Log(transform.position);
+                    Debug.Log(Target);
+                    Debug.Log(toMove);
+                    Destroy(gameObject);
+                    islandDest.GetComponent<islandController>().playerCapture(toMove);
 
+                }
             }
         }
 

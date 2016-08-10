@@ -11,13 +11,13 @@ public class TimerScript : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        counterText = GetComponent<Text>() as Text;	
-
+        counterText = GetComponent<Text>() as Text;
+        resume();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        seconds = (int)((timePerRound)-(Time.time % 60f));
+        seconds = (int)((timePerRound)-(Time.timeSinceLevelLoad % 60f));
         if (seconds == 0)
         {
             Time.timeScale = 0;
