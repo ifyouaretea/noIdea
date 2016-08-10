@@ -1,12 +1,5 @@
 fileFormatVersion: 2
-<<<<<<< HEAD:noIdea2/Assets/Images/Game Logo.png.meta
-guid: f837cdf03c505374cbe878b86283101b
-timeCreated: 1470869621
-=======
-guid: bd7fbfc479a11b2479e2ae5db35e7c9a
-timeCreated: 1470869189
->>>>>>> 39ba1f0bca67e9bec1fe840a0df50a8640cfa7ad:noIdea2/Assets/Images/Game Logo.png.meta
-licenseType: Free
+guid: d57e29a4b82379544bc3cd2485c26e82
 TextureImporter:
   fileIDToRecycleName: {}
   serializedVersion: 2
@@ -35,24 +28,24 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     filterMode: -1
-    aniso: -1
+    aniso: 16
     mipBias: -1
-    wrapMode: -1
-  nPOTScale: 1
+    wrapMode: 1
+  nPOTScale: 0
   lightmap: 0
   rGBM: 0
   compressionQuality: 50
   allowsAlphaSplitting: 0
-  spriteMode: 0
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spritePixelsToUnits: 100
-  alphaIsTransparency: 0
+  alphaIsTransparency: 1
   spriteTessellationDetail: -1
-  textureType: -1
+  textureType: 8
   buildTargetSettings: []
   spriteSheet:
     serializedVersion: 2
