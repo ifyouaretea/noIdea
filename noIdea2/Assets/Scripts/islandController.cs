@@ -23,8 +23,10 @@ public class islandController : MonoBehaviour
 	public bool generate;
 	int maxpop;
 	public List<GameObject> ships;
+	public List<GameObject> localShips;
 	void Start ()
 	{
+		localShips = new List<GameObject> ();
 		canvas = GameObject.Find ("Canvas");
 		setCapacity ();
 		if (gameObject.tag == "Player")
@@ -57,6 +59,7 @@ public class islandController : MonoBehaviour
 				shippu.GetComponent<Image> ().color = Color.red;
 			shippu.GetComponent<shipController>().island = gameObject.GetComponent<Button>();
 			ships.Add (shippu);
+			localShips.Add (shippu);
 			if (ships.Count >= maxpop) {
 				generate = false;
 			}
