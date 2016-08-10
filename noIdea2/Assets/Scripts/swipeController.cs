@@ -41,7 +41,7 @@ public class swipeController : MonoBehaviour {
             List<RaycastResult> objectsHit = new List<RaycastResult>();
             EventSystem.current.RaycastAll(cursor, objectsHit);
             int count = objectsHit.Count;
-            if (count > 0)
+            if (count > 0 & objectsHit[0].gameObject.name != "Button" & objectsHit[0].gameObject.name != "Handle")
             {
                 src = objectsHit[0].gameObject;
                 Debug.Log("SRC:" + src);

@@ -75,7 +75,7 @@ public class islandController : MonoBehaviour
 
 	public void playerCapture (int start)
 	{
-		curr = start;
+		curr += start;
 		this.owner = "player";
 		gameObject.tag = "Player";
 		gameObject.GetComponent<Image> ().color = Color.green;
