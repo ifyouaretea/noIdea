@@ -11,14 +11,17 @@ public class moveAnimation : MonoBehaviour
     public GameObject islandSrc;
     public GameObject islandDest;
     private int numShips;
+    public GameObject slider;
 	int toMove;
     void Start()
     {
         if (islandSrc.GetComponent<islandController>().owner == "player")
         {
+            slider = GameObject.Find("Slider");
+            float val = slider.GetComponent<allocationSliderText>().allocationSlider.value;
             numShips = islandSrc.GetComponent<islandController>().curr;
-            toMove = (int)(0.5 * numShips);
-            Debug.Log("moving: " + toMove);
+            toMove = (int)(val*0.25 * numShips);
+            Debug.Log("VAL:" + toMove);
             //numShips.RemoveRange(1, toMove);
             //for (int i = toMove - 1; i > (numShips.Count - toMove); i--)
             //{
