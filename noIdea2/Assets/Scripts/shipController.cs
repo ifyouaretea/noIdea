@@ -3,8 +3,7 @@ using System.Collections;
 using UnityEngine.UI;
 
 public class shipController : MonoBehaviour {
-    //public Button island;
-    public Vector3 rotateAbout;
+    public Button island;
    
     // Use this for initialization
     void Start () {
