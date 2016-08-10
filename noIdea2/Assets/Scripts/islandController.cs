@@ -38,7 +38,7 @@ public class islandController : MonoBehaviour
 	}
 
 	void Update(){
-		
+        		
 	}
 
 	IEnumerator SpawnWaves (){
@@ -57,7 +57,7 @@ public class islandController : MonoBehaviour
 				shippu.GetComponent<Image> ().color = Color.red;
 			shippu.GetComponent<shipController>().island = gameObject.GetComponent<Button>();
 			ships.Add (shippu);
-			if (ships.Count > maxpop) {
+			if (ships.Count >= maxpop) {
 				generate = false;
 			}
 			yield return new WaitForSeconds (1);

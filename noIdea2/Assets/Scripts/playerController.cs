@@ -16,7 +16,8 @@ public class playerController : MonoBehaviour {
     }
 
 	void Update(){
-		//updatePopulation ();
-        populationCounter.text = "00/"+maxPopulation.ToString("00");
+        //updatePopulation ();
+        shipPopulation = ships.Count;
+        populationCounter.text = shipPopulation.ToString("00")+"/"+maxPopulation.ToString("00");
     }
 }
