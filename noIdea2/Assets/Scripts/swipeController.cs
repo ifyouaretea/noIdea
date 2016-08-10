@@ -72,7 +72,7 @@ public class swipeController : MonoBehaviour {
 
             //normalize the 2d vector
             currentSwipe.Normalize();
-            if (src != null & dest != null)
+            if (src != null & dest != null & src.GetComponent<islandController>().owner == "player")
             {
                 Vector3 spawnPosition = new Vector3(src.transform.position.x, src.transform.position.y, 0);
                 Vector3 endPosition = new Vector3(dest.transform.position.x, dest.transform.position.y, 0);
