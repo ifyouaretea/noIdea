@@ -7,18 +7,21 @@ public class playerController : MonoBehaviour {
 	public int maxPopulation;
     public Text populationCounter;
 	public int shipPopulation;
-	public List<GameObject> ships;
+	public GameObject[] islands;
 
-    GameObject[] islands;
 
 
 	void Start(){
 		maxPopulation = 60;
+		shipPopulation = 0;
     }
 
 	void Update(){
-        //updatePopulation ();
-        shipPopulation = ships.Count;
+		islands = GameObject.FindGameObjectsWithTag ("Player");
+		shipPopulation = 0;
+		foreach (GameObject island in islands){
+			shipPopulation += island.GetComponent<islandController> ().curr;
+		}
         populationCounter.text = shipPopulation.ToString("00")+"/"+maxPopulation.ToString("00");
     }
 }
