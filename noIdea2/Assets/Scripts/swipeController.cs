@@ -28,6 +28,9 @@ public class swipeController : MonoBehaviour {
 
     public void swipe()
     {
+        //src = null;
+        //dest = null;
+
         if (Input.GetMouseButtonDown(0))
         {
             //save began touch 2d point
@@ -38,8 +41,13 @@ public class swipeController : MonoBehaviour {
             EventSystem.current.RaycastAll(cursor, objectsHit);
             int count = objectsHit.Count;
             if (count > 0)
+            {
                 src = objectsHit[0].gameObject;
-                Debug.Log(src);
+                Debug.Log("SRC:" + src);
+            }
+            else
+                src = null;
+                dest = null; 
         }
         if (Input.GetMouseButtonUp(0))
         {
@@ -54,22 +62,27 @@ public class swipeController : MonoBehaviour {
             int count = objectsHit.Count;
             if (count > 0)
                 dest = objectsHit[0].gameObject;
+            else
+                dest = null;
             Debug.Log(dest);
             //create vector from the two points
             currentSwipe = new Vector2(secondPressPos.x - firstPressPos.x, secondPressPos.y - firstPressPos.y);
 
             //normalize the 2d vector
             currentSwipe.Normalize();
-
-            Vector3 spawnPosition = new Vector3(src.transform.position.x, src.transform.position.y, 0);
-            Vector3 endPosition = new Vector3(dest.transform.position.x, dest.transform.position.y, 0);
-            Quaternion spawnRotation = Quaternion.identity;
-            GameObject shippu = Instantiate(ship) as GameObject;
-            shippu.transform.SetParent(canvas.transform);
-            shippu.transform.position = spawnPosition;
-            shippu.transform.localRotation = spawnRotation;
-            shippu.GetComponent<moveAnimation>().StartPosition = spawnPosition;
-            shippu.GetComponent<moveAnimation>().Target = endPosition;
+            if (src != null & dest != null)
+            {
+                Vector3 spawnPosition = new Vector3(src.transform.position.x, src.transform.position.y, 0);
+                Vector3 endPosition = new Vector3(dest.transform.position.x, dest.transform.position.y, 0);
+                Quaternion spawnRotation = Quaternion.identity;
+                GameObject shippu = Instantiate(ship) as GameObject;
+                shippu.GetComponent<shipController>().enabled = false;
+                shippu.transform.SetParent(canvas.transform);
+                shippu.transform.position = spawnPosition;
+                shippu.transform.localRotation = spawnRotation;
+                shippu.GetComponent<moveAnimation>().StartPosition = spawnPosition;
+                shippu.GetComponent<moveAnimation>().Target = endPosition;
+            }
         }
     }
 

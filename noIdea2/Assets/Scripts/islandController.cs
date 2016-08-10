@@ -48,7 +48,7 @@ public class islandController : MonoBehaviour
 				shippu.GetComponent<Image> ().color = Color.green;
 			if (gameObject.tag == "AI")
 				shippu.GetComponent<Image> ().color = Color.red;
-			shippu.GetComponent<shipController>().island = gameObject.GetComponent<Button>();
+			shippu.GetComponent<shipController>().rotateAbout = gameObject.GetComponent<Button>().transform.position;
 			ships.Add (shippu);
 			if (ships.Count > maxpop) {
 				generate = false;
