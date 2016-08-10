@@ -1,16 +1,34 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
-public class moveAnimation : MonoBehaviour {
+public class moveAnimation : MonoBehaviour
+{
     float ElapsedTime;
     float FinishTime;
     public Vector3 Target;
     public Vector3 StartPosition;
     public GameObject islandSrc;
     public GameObject islandDest;
+    private List<GameObject> numShips;
 
     void Start()
     {
+        if (islandSrc.GetComponent<islandController>().owner == "player")
+        {
+            numShips = islandSrc.GetComponent<islandController>().localShips;
+            int toMove = (int)(0.5 * numShips.Count);
+            Debug.Log("moving: " + toMove);
+            numShips.RemoveRange(1, toMove);
+            for (int i = toMove - 1; i > (numShips.Count - toMove); i--)
+            {
+                Destroy(numShips[i]);
+            }
+            islandSrc.GetComponent<islandController>().generate = true;
+            islandSrc.GetComponent<islandController>().playerCapture();
+            Debug.Log(numShips.Count);
+
+        }
 
     }
 
@@ -25,10 +43,10 @@ public class moveAnimation : MonoBehaviour {
                 Debug.Log(transform.position);
                 Debug.Log(Target);
                 Destroy(gameObject);
-                if (islandSrc.GetComponent<islandController>().owner == "player")
-                    islandDest.GetComponent<islandController>().playerCapture();
+                islandDest.GetComponent<islandController>().playerCapture();
+
             }
         }
-           
+
     }
 }
