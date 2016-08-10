@@ -19,12 +19,12 @@ public class loginScript : MonoBehaviour {
     }
 
     public void verifyLogin() {
-        SceneManager.LoadScene("Level1");
+        SceneManager.LoadScene("menuScreen");
     }
 
     public void register()
     {
-        SceneManager.LoadScene("Level1");
+        SceneManager.LoadScene("menuScreen");
     }
 
 }
