@@ -85,10 +85,12 @@ public class swipeController : MonoBehaviour {
                 shippu.transform.localRotation = spawnRotation;
                 shippu.GetComponent<moveAnimation>().StartPosition = spawnPosition;
                 shippu.GetComponent<moveAnimation>().Target = endPosition;
-                if (src.GetComponent<islandController>().owner == "player")
-                {
-                    dest.GetComponent<islandController>().playerCapture();
-                }
+                shippu.GetComponent<moveAnimation>().islandSrc = src;
+                shippu.GetComponent<moveAnimation>().islandDest = dest;
+                //if (src.GetComponent<islandController>().owner == "player")
+                //{
+                //    dest.GetComponent<islandController>().playerCapture();
+                //}
             }
         }
     }

@@ -6,6 +6,8 @@ public class moveAnimation : MonoBehaviour {
     float FinishTime;
     public Vector3 Target;
     public Vector3 StartPosition;
+    public GameObject islandSrc;
+    public GameObject islandDest;
 
     void Start()
     {
@@ -23,6 +25,8 @@ public class moveAnimation : MonoBehaviour {
                 Debug.Log(transform.position);
                 Debug.Log(Target);
                 Destroy(gameObject);
+                if (islandSrc.GetComponent<islandController>().owner == "player")
+                    islandDest.GetComponent<islandController>().playerCapture();
             }
         }
            

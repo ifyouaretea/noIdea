@@ -34,7 +34,7 @@ public class islandController : MonoBehaviour
 		if (gameObject.tag == "Neutral")
 			setNeutral ();
 		Debug.Log (gameObject.tag);
-		StartCoroutine (SpawnWaves ());
+		//StartCoroutine (SpawnWaves ());
 	}
 
 	void Update(){
@@ -70,10 +70,11 @@ public class islandController : MonoBehaviour
 		gameObject.tag = "Player";
 		gameObject.GetComponent<Image> ().color = Color.green;
 		generate = true;
-		ships = canvas.GetComponent<playerController> ().ships;
+        ships = canvas.GetComponent<playerController> ().ships;
 		canvas.GetComponent<playerController> ().maxPopulation += capacity;
 		maxpop = canvas.GetComponent<playerController> ().maxPopulation;
-	}
+        this.StartCoroutine(SpawnWaves());
+    }
 
 	public void aiCapture ()
 	{
@@ -84,7 +85,8 @@ public class islandController : MonoBehaviour
 		ships = canvas.GetComponent<aiController> ().ships;
 		canvas.GetComponent<aiController> ().maxPopulation += capacity;
 		maxpop = canvas.GetComponent<aiController> ().maxPopulation;
-	}
+        this.StartCoroutine(SpawnWaves());
+    }
 
 	public void setNeutral ()
 	{
