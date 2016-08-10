@@ -13,6 +13,7 @@ public class playerController : MonoBehaviour {
 
 
 	void Start(){
+		maxPopulation = 60;
     }
 
 	void Update(){
