@@ -64,7 +64,7 @@ public class islandController : MonoBehaviour
 		}
 	}
 
-	void playerCapture ()
+	public void playerCapture ()
 	{
 		this.owner = "player";
 		gameObject.tag = "Player";
@@ -75,7 +75,7 @@ public class islandController : MonoBehaviour
 		maxpop = canvas.GetComponent<playerController> ().maxPopulation;
 	}
 
-	void aiCapture ()
+	public void aiCapture ()
 	{
 		this.owner = "ai";
 		gameObject.tag = "AI";
@@ -86,7 +86,7 @@ public class islandController : MonoBehaviour
 		maxpop = canvas.GetComponent<aiController> ().maxPopulation;
 	}
 
-	void setNeutral ()
+	public void setNeutral ()
 	{
 		this.owner = "neutral";
 		gameObject.tag = "Neutral";
@@ -94,7 +94,7 @@ public class islandController : MonoBehaviour
 		generate = false;
 	}
 
-	void setCapacity ()
+	public void setCapacity ()
 	{
 		if (this.size == 's') {
 			this.capacity = 10;

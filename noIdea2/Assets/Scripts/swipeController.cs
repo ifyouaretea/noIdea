@@ -10,6 +10,7 @@ public class swipeController : MonoBehaviour {
     public GameObject src;
     public GameObject dest;
     public Canvas canvas;
+    public List<GameObject> ships;
     Vector2 firstPressPos;
     Vector2 secondPressPos;
     Vector2 currentSwipe;
@@ -44,6 +45,7 @@ public class swipeController : MonoBehaviour {
             {
                 src = objectsHit[0].gameObject;
                 Debug.Log("SRC:" + src);
+                //src.GetComponent<islandController>().
             }
             else
                 src = null;
@@ -76,12 +78,17 @@ public class swipeController : MonoBehaviour {
                 Vector3 endPosition = new Vector3(dest.transform.position.x, dest.transform.position.y, 0);
                 Quaternion spawnRotation = Quaternion.identity;
                 GameObject shippu = Instantiate(ship) as GameObject;
+
                 shippu.GetComponent<shipController>().enabled = false;
                 shippu.transform.SetParent(canvas.transform);
                 shippu.transform.position = spawnPosition;
                 shippu.transform.localRotation = spawnRotation;
                 shippu.GetComponent<moveAnimation>().StartPosition = spawnPosition;
                 shippu.GetComponent<moveAnimation>().Target = endPosition;
+                if (src.GetComponent<islandController>().owner == "player")
+                {
+                    dest.GetComponent<islandController>().playerCapture();
+                }
             }
         }
     }
