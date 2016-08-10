@@ -26,7 +26,7 @@ public class moveAnimation : MonoBehaviour {
                 Debug.Log(Target);
                 Destroy(gameObject);
                 if (islandSrc.GetComponent<islandController>().owner == "player")
-                    islandDest.GetComponent<islandController>().playerCapture();
+                    islandDest.GetComponent<islandController>().playerCapture(4);
             }
         }
            

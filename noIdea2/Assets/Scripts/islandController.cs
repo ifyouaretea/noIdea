@@ -12,8 +12,10 @@ public class islandController : MonoBehaviour
 	public GameObject island;
 	//public Vector3 spawnValues;
 	public GameObject canvas;
-	
+
 	int addy;
+	int curr;
+	Text current;
 	//public int y;
 	//public int z;
 
@@ -30,22 +32,25 @@ public class islandController : MonoBehaviour
 		canvas = GameObject.Find ("Canvas");
 		setCapacity ();
 		if (gameObject.tag == "Player")
-			playerCapture ();
+			playerCapture (capacity/2);
 		if (gameObject.tag == "AI")
 			aiCapture ();
 		if (gameObject.tag == "Neutral")
 			setNeutral ();
 		Debug.Log (gameObject.tag);
+		current = gameObject.GetComponentInChildren<Text> ();
+		current.text = curr.ToString("00");
 		//StartCoroutine (SpawnWaves ());
 	}
 
 	void Update(){
-        		
+		current.text = curr.ToString("00");
 	}
 
 	IEnumerator SpawnWaves (){
 		while (generate) {
-			
+			curr += curr / 2;
+
 			Vector3 islandLoc = gameObject.transform.localPosition;
 			Vector3 spawnPosition = new Vector3 (islandLoc.x, islandLoc.y+addy,islandLoc.z);
 			Quaternion spawnRotation = Quaternion.identity;            
@@ -60,15 +65,16 @@ public class islandController : MonoBehaviour
 			shippu.GetComponent<shipController>().island = gameObject.GetComponent<Button>();
 			ships.Add (shippu);
 			localShips.Add (shippu);
-			if (localShips.Count >= capacity) {
+			if (localShips.Count >= capacity || curr >= capacity) {
 				generate = false;
 			}
 			yield return new WaitForSeconds (1);
 		}
 	}
 
-	public void playerCapture ()
+	public void playerCapture (int start)
 	{
+		curr = start;
 		this.owner = "player";
 		gameObject.tag = "Player";
 		gameObject.GetComponent<Image> ().color = Color.green;
