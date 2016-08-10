@@ -12,7 +12,7 @@ public class playerController : MonoBehaviour {
 
 
 	void Start(){
-		maxPopulation = 175;
+		maxPopulation = 30;
 		shipPopulation = 0;
     }
 

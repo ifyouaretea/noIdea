@@ -12,6 +12,7 @@ public class aiController : MonoBehaviour {
 
 
 	void Start(){
+
 	}
 
 	void Update(){
