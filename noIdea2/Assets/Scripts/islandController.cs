@@ -60,7 +60,7 @@ public class islandController : MonoBehaviour
 			shippu.GetComponent<shipController>().island = gameObject.GetComponent<Button>();
 			ships.Add (shippu);
 			localShips.Add (shippu);
-			if (ships.Count >= maxpop) {
+			if (localShips.Count >= capacity) {
 				generate = false;
 			}
 			yield return new WaitForSeconds (1);
