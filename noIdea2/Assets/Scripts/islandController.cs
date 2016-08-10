@@ -48,6 +48,11 @@ public class islandController : MonoBehaviour
 			shippu.transform.SetParent (canvas.transform);
 			shippu.transform.localPosition = spawnPosition;
 			shippu.transform.localRotation = spawnRotation;
+			if (gameObject.tag == "Player")
+				shippu.GetComponent<Image> ().color = Color.green;
+			if (gameObject.tag == "AI")
+				shippu.GetComponent<Image> ().color = Color.red;
+			shippu.GetComponent<shipController>().island = gameObject.GetComponent<Button>();
 			ships.Add (shippu);
 			if (ships.Count > maxpop) {
 				generate = false;
@@ -71,7 +76,7 @@ public class islandController : MonoBehaviour
 	{
 		this.owner = "ai";
 		gameObject.tag = "AI";
-		GetComponent<Image> ().color = Color.red;
+		gameObject.GetComponent<Image> ().color = Color.red;
 		generate = true;
 		ships = canvas.GetComponent<aiController> ().ships;
 		canvas.GetComponent<aiController> ().maxPopulation += capacity;
@@ -82,7 +87,7 @@ public class islandController : MonoBehaviour
 	{
 		this.owner = "neutral";
 		gameObject.tag = "Neutral";
-		GetComponent<Image> ().color = Color.grey;
+		gameObject.GetComponent<Image> ().color = Color.grey;
 		generate = false;
 	}
 
