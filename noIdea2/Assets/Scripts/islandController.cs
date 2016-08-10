@@ -13,10 +13,6 @@ public class islandController : MonoBehaviour
 	public Vector3 spawnValues;
 	public Canvas canvas;
 
-	//public int x;
-	//public int y;
-	//public int z;
-
 	public string owner;//'player', 'ai', 'neutral'
 	public char size;
 	public int capacity;

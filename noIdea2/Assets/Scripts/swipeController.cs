@@ -10,9 +10,12 @@ public class swipeController : MonoBehaviour {
     public GameObject src;
     public GameObject dest;
     public Canvas canvas;
+    Vector2 firstPressPos;
+    Vector2 secondPressPos;
+    Vector2 currentSwipe;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
         
 	
 	}
@@ -22,60 +25,6 @@ public class swipeController : MonoBehaviour {
         swipe();
 
     }
-
-    //inside class
-    Vector2 firstPressPos;
-    Vector2 secondPressPos;
-    Vector2 currentSwipe;
-
-
-    public void touch()
-    {
-        if (Input.touches.Length > 0)
-        {
-            Touch t = Input.GetTouch(0);
-            if (t.phase == TouchPhase.Began)
-            {
-                //save began touch 2d point
-                firstPressPos = new Vector2(t.position.x, t.position.y);
-            }
-            if (t.phase == TouchPhase.Ended)
-            {
-                //save ended touch 2d point
-                secondPressPos = new Vector2(t.position.x, t.position.y);
-                
-
-                //create vector from the two points
-                currentSwipe = new Vector3(secondPressPos.x - firstPressPos.x, secondPressPos.y - firstPressPos.y);
-
-                //normalize the 2d vector
-                currentSwipe.Normalize();
-
-                //swipe upwards
-                if (currentSwipe.y > 0 & currentSwipe.x > -0.5f & currentSwipe.x < 0.5f)
-             {
-                    //Debug.Log("up swipe");
-                }
-                //swipe down
-                if (currentSwipe.y < 0 & currentSwipe.x > -0.5f & currentSwipe.x < 0.5f)
-             {
-                    //Debug.Log("down swipe");
-                }
-                //swipe left
-                if (currentSwipe.x < 0 & currentSwipe.y > -0.5f & currentSwipe.y < 0.5f)
-             {
-                    //Debug.Log("left swipe");
-                }
-                //swipe right
-                if (currentSwipe.x > 0 & currentSwipe.y > -0.5f & currentSwipe.y < 0.5f)
-             {
-                    //Debug.Log("right swipe");
-                }
-            }
-        }
-    }
-
-
 
     public void swipe()
     {
@@ -111,6 +60,7 @@ public class swipeController : MonoBehaviour {
 
             //normalize the 2d vector
             currentSwipe.Normalize();
+
             Vector3 spawnPosition = new Vector3(src.transform.position.x, src.transform.position.y, 0);
             Vector3 endPosition = new Vector3(dest.transform.position.x, dest.transform.position.y, 0);
             Quaternion spawnRotation = Quaternion.identity;
@@ -120,25 +70,51 @@ public class swipeController : MonoBehaviour {
             shippu.transform.localRotation = spawnRotation;
             shippu.GetComponent<moveAnimation>().StartPosition = spawnPosition;
             shippu.GetComponent<moveAnimation>().Target = endPosition;
-            //swipe upwards
-            if (currentSwipe.y > 0 & currentSwipe.x > -0.5f & currentSwipe.x < 0.5f)
+        }
+    }
+
+    public void touch()
+    {
+        if (Input.touches.Length > 0)
         {
-                //Debug.Log("up swipe");
+            Touch t = Input.GetTouch(0);
+            if (t.phase == TouchPhase.Began)
+            {
+                //save began touch 2d point
+                firstPressPos = new Vector2(t.position.x, t.position.y);
             }
-            //swipe down
-            if (currentSwipe.y < 0 & currentSwipe.x > -0.5f & currentSwipe.x < 0.5f)
-        {
-                //Debug.Log("down swipe");
-            }
-            //swipe left
-            if (currentSwipe.x < 0 & currentSwipe.y > -0.5f & currentSwipe.y < 0.5f)
-        {
-                //Debug.Log("left swipe");
-            }
-            //swipe right
-            if (currentSwipe.x > 0 & currentSwipe.y > -0.5f & currentSwipe.y < 0.5f)
-        {
-                //Debug.Log("right swipe");
+            if (t.phase == TouchPhase.Ended)
+            {
+                //save ended touch 2d point
+                secondPressPos = new Vector2(t.position.x, t.position.y);
+
+
+                //create vector from the two points
+                currentSwipe = new Vector3(secondPressPos.x - firstPressPos.x, secondPressPos.y - firstPressPos.y);
+
+                //normalize the 2d vector
+                currentSwipe.Normalize();
+
+                //swipe upwards
+                if (currentSwipe.y > 0 & currentSwipe.x > -0.5f & currentSwipe.x < 0.5f)
+                {
+                    //Debug.Log("up swipe");
+                }
+                //swipe down
+                if (currentSwipe.y < 0 & currentSwipe.x > -0.5f & currentSwipe.x < 0.5f)
+                {
+                    //Debug.Log("down swipe");
+                }
+                //swipe left
+                if (currentSwipe.x < 0 & currentSwipe.y > -0.5f & currentSwipe.y < 0.5f)
+                {
+                    //Debug.Log("left swipe");
+                }
+                //swipe right
+                if (currentSwipe.x > 0 & currentSwipe.y > -0.5f & currentSwipe.y < 0.5f)
+                {
+                    //Debug.Log("right swipe");
+                }
             }
         }
     }
