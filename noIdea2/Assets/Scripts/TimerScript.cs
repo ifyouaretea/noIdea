@@ -21,6 +21,6 @@ public class TimerScript : MonoBehaviour {
         {
             Time.timeScale = 0;
         }
-        counterText.text = "Time Left: "+seconds.ToString("00");
+        counterText.text = seconds.ToString("00");
 	}
 }
