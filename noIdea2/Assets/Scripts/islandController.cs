@@ -10,10 +10,10 @@ public class islandController : MonoBehaviour
 
 	public GameObject ship;
 	public GameObject island;
-	public Vector3 spawnValues;
-	public Canvas canvas;
+	//public Vector3 spawnValues;
+	public GameObject canvas;
 
-	//public int x;
+	int addy;
 	//public int y;
 	//public int z;
 
@@ -25,6 +25,7 @@ public class islandController : MonoBehaviour
 	public List<GameObject> ships;
 	void Start ()
 	{
+		canvas = GameObject.Find ("Canvas");
 		setCapacity ();
 		if (gameObject.tag == "Player")
 			playerCapture ();
@@ -42,7 +43,9 @@ public class islandController : MonoBehaviour
 
 	IEnumerator SpawnWaves (){
 		while (generate) {
-			Vector3 spawnPosition = new Vector3 (spawnValues.x, spawnValues.y, spawnValues.z);
+			
+			Vector3 islandLoc = gameObject.transform.localPosition;
+			Vector3 spawnPosition = new Vector3 (islandLoc.x, islandLoc.y+addy,islandLoc.z);
 			Quaternion spawnRotation = Quaternion.identity;            
 			GameObject shippu = Instantiate (ship) as GameObject;
 			shippu.transform.SetParent (canvas.transform);
@@ -93,11 +96,15 @@ public class islandController : MonoBehaviour
 
 	void setCapacity ()
 	{
-		if (this.size == 's')
+		if (this.size == 's') {
 			this.capacity = 10;
-		else if (this.size == 'm')
+			addy = 25;
+		} else if (this.size == 'm') {
 			this.capacity = 15;
-		else if (this.size == 'l')
+			addy = 40;
+		} else if (this.size == 'l') {
 			this.capacity = 20;
+			addy = 60;
+		}
 	}
 }

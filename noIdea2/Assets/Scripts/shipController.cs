@@ -18,9 +18,13 @@ public class shipController : MonoBehaviour {
     //the sphere gameObject     
         
     void FixedUpdate() {
-        //Vector3 spawnPosition = new Vector3(-250, 40, 0);
-        //Quaternion target = Quaternion.Euler(10, 0, 0);
-        //transform.rotation = Quaternion.Slerp(enIsland.position, target, 20 * Time.deltaTime);
-        transform.RotateAround(island.transform.position, Vector3.back, 20 * Time.deltaTime);
+
+		char size = island.GetComponent<islandController>().size;
+		if (size == 's')
+			transform.RotateAround(island.transform.position, Vector3.back, 40 * Time.deltaTime);
+		if (size == 'm')
+        	transform.RotateAround(island.transform.position, Vector3.back, 20 * Time.deltaTime);
+		if (size == 'l')
+			transform.RotateAround(island.transform.position, Vector3.back, 15 * Time.deltaTime);
     }
 }
