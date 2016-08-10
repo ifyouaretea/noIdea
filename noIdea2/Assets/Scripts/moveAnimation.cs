@@ -9,17 +9,25 @@ public class moveAnimation : MonoBehaviour {
 
     void Start()
     {
-        //Vector3 StartPosition = new Vector3(0, 0, 0);
-        //Target = island.transform.localPosition;
-        //StartPosition = Vector3.zero;
-        //Target = new Vector3(100,100,100);
         ElapsedTime = 0;
         FinishTime = 5f;
     }
 
     void Update()
     {
-        ElapsedTime += Time.deltaTime;
-        transform.position = Vector3.Lerp(StartPosition, Target, ElapsedTime / FinishTime);
+        if (StartPosition != new Vector3(0, 0, 0))
+        {
+            ElapsedTime += Time.deltaTime;
+            //transform.position = Vector3.Lerp(StartPosition, Target, ElapsedTime / FinishTime);
+            transform.position = Vector3.MoveTowards(transform.position, Target, Time.deltaTime * 100);
+            //transform.position = Vector3.Lerp(StartPosition, Target, ElapsedTime / FinishTime);
+            if (transform.position == Target & transform.position.y != 0)
+            {
+                Debug.Log(transform.position);
+                Debug.Log(Target);
+                Destroy(gameObject);
+            }
+        }
+           
     }
-}
+    }

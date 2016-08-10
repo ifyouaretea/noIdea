@@ -116,7 +116,7 @@ public class swipeController : MonoBehaviour {
             Quaternion spawnRotation = Quaternion.identity;
             GameObject shippu = Instantiate(ship) as GameObject;
             shippu.transform.SetParent(canvas.transform);
-            shippu.transform.localPosition = spawnPosition;
+            shippu.transform.position = spawnPosition;
             shippu.transform.localRotation = spawnRotation;
             shippu.GetComponent<moveAnimation>().StartPosition = spawnPosition;
             shippu.GetComponent<moveAnimation>().Target = endPosition;
