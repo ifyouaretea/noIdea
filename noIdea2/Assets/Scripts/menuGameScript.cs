@@ -19,6 +19,11 @@ public class menuGameScript : MonoBehaviour {
 
     public void level2()
     {
-        SceneManager.LoadScene("Level2");
+        SceneManager.LoadScene("Level 2");
+    }
+
+    public void level3()
+    {
+        SceneManager.LoadScene("Level 3");
     }
 }

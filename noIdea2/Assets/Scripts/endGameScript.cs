@@ -28,6 +28,11 @@ public class endGameScript : MonoBehaviour {
 
     public void playGame()
     {
-        SceneManager.LoadScene("Level2");
+        SceneManager.LoadScene("Level 2");
+    }
+
+    public void menuGame()
+    {
+        SceneManager.LoadScene("menuScreen");
     }
 }
