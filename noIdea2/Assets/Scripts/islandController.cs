@@ -28,20 +28,28 @@ public class islandController : MonoBehaviour
 		localShips = new List<GameObject> ();
 		canvas = GameObject.Find ("Canvas");
 		setCapacity ();
-		if (gameObject.tag == "Player")
-			playerCapture (capacity/2);
-//		if (gameObject.tag == "AI")
-//			aiCapture ();
-		if (gameObject.tag == "Neutral")
-			setNeutral ();
+        if (gameObject.tag == "AI")
+            aiCapture();
+        else if (gameObject.tag == "Player") {
+            playerCapture(capacity / 2);
+            current = gameObject.GetComponentInChildren<Text>();
+            current.text = curr.ToString("00");
+        }
+        else if (gameObject.tag == "Neutral")
+        {
+            setNeutral();
+            current = gameObject.GetComponentInChildren<Text>();
+            current.text = curr.ToString("00");
+        }
+        
 		Debug.Log (gameObject.tag);
-		current = gameObject.GetComponentInChildren<Text> ();
-		current.text = curr.ToString("00");
-		//StartCoroutine (SpawnWaves ());
-	}
+        
+        //StartCoroutine (SpawnWaves ());
+    }
 
 	void Update(){
-		current.text = curr.ToString("00");
+        if (gameObject.tag != "AI")
+		    current.text = curr.ToString("00");
 	}
 
 	IEnumerator SpawnWaves (){
@@ -94,18 +102,28 @@ public class islandController : MonoBehaviour
         this.StartCoroutine(SpawnWaves());
     }
 
-//    public void aiCapture ()
-//	{
-//		this.owner = "ai";
-//		gameObject.tag = "AI";
-//		gameObject.GetComponent<Image> ().color = Color.red;
-//		generate = true;
-//		canvas.GetComponent<aiController> ().maxPopulation += capacity;
-//		maxpop = canvas.GetComponent<aiController> ().maxPopulation;
-//        this.StartCoroutine(SpawnWaves());
-//    }
+    public void attacked()
+    {
+        curr = 0;
+        foreach (GameObject ship in localShips)
+        {
+            Destroy(ship);
+        }
+        generate = true;
+        StopCoroutine(SpawnWaves());
+        this.StartCoroutine(SpawnWaves());
+    }
 
-	public void setNeutral ()
+    public void aiCapture()
+    {
+        this.owner = "ai";
+        gameObject.tag = "AI";
+        gameObject.GetComponent<Image>().color = Color.red;
+        generate = true;
+    
+    }
+
+    public void setNeutral ()
 	{
 		this.owner = "neutral";
 		gameObject.tag = "Neutral";

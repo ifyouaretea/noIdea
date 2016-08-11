@@ -52,6 +52,19 @@ public class moveAnimation : MonoBehaviour
                     islandDest.GetComponent<islandController>().playerCapture(toMove);
 
                 }
+            }else
+            {
+                ElapsedTime += Time.deltaTime;
+                transform.position = Vector3.MoveTowards(transform.position, Target, Time.deltaTime * 100);
+                if (transform.position == Target & transform.position.y != 0)
+                {
+                    Debug.Log(transform.position);
+                    Debug.Log(Target);
+                    Debug.Log(toMove);
+                    Destroy(gameObject);
+                    islandDest.GetComponent<islandController>().attacked();
+
+                }
             }
         }
 
