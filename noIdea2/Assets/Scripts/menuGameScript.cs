@@ -6,7 +6,6 @@ public class menuGameScript : MonoBehaviour {
     
 	void Start () {
     }
-	
 	// Update is called once per frame
 	void Update () {
         if (Input.GetKeyDown(KeyCode.Escape)) { Application.Quit(); }
@@ -19,6 +18,11 @@ public class menuGameScript : MonoBehaviour {
 
     public void level2()
     {
-        SceneManager.LoadScene("Level2");
+        SceneManager.LoadScene("Level 2");
+    }
+
+    public void level3()
+    {
+        SceneManager.LoadScene("Level 3");
     }
 }

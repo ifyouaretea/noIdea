@@ -3,19 +3,22 @@ using System.Collections;
 using UnityEngine.SceneManagement;
 
 public class endGameScript : MonoBehaviour {
-    public GameObject timer;
-    public GameObject score;
+    public GameObject canvas;
 
-	// Use this for initialization
-	void Start () {
-        //timer = GameObject.Find("Timer");
-        //int secs = timer.GetComponent<timerScript>().
+
+
+    // Use this for initialization
+    void Start () {
 
 
     }
-	
-	// Update is called once per frame
-	void Update () {
+    //island.GetComponent<islandController> ().curr
+    // Update is called once per frame
+    void Update () {
+        if (canvas.GetComponent<playerController> ().maxPopulation == canvas.GetComponent<playerController> ().shipPopulation)
+        {
+            SceneManager.LoadScene("winScreen");
+        }
         if (Input.GetKeyDown(KeyCode.Escape)) { Application.Quit(); }
         //slider.GetComponent<allocationSliderText>().allocationSlider.value;
 
@@ -28,6 +31,11 @@ public class endGameScript : MonoBehaviour {
 
     public void playGame()
     {
-        SceneManager.LoadScene("Level2");
+        SceneManager.LoadScene("Level 2");
+    }
+
+    public void menuGame()
+    {
+        SceneManager.LoadScene("menuScreen");
     }
 }
