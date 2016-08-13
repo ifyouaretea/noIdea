@@ -16,22 +16,17 @@ public class swipeController : MonoBehaviour {
     Vector2 currentSwipe;
 
     // Use this for initialization
-    void Start () {
-        
+    void Start () {        
 	
 	}
 	
 	// Update is called once per frame
 	void Update () {
         swipe();
-
     }
 
     public void swipe()
     {
-        //src = null;
-        //dest = null;
-
         if (Input.GetMouseButtonDown(0))
         {
             //save began touch 2d point
@@ -44,8 +39,6 @@ public class swipeController : MonoBehaviour {
             if (count > 0 & objectsHit[0].gameObject.name != "Button" & objectsHit[0].gameObject.name != "Handle")
             {
                 src = objectsHit[0].gameObject;
-                Debug.Log("SRC:" + src);
-                //src.GetComponent<islandController>().
             }
             else
                 src = null;
@@ -66,7 +59,7 @@ public class swipeController : MonoBehaviour {
                 dest = objectsHit[0].gameObject;
             else
                 dest = null;
-            Debug.Log(dest);
+
             //create vector from the two points
             currentSwipe = new Vector2(secondPressPos.x - firstPressPos.x, secondPressPos.y - firstPressPos.y);
 
@@ -78,7 +71,6 @@ public class swipeController : MonoBehaviour {
                 Vector3 endPosition = new Vector3(dest.transform.position.x, dest.transform.position.y, 0);
                 Quaternion spawnRotation = Quaternion.identity;
                 GameObject shippu = Instantiate(ship) as GameObject;
-
                 shippu.GetComponent<shipController>().enabled = false;
                 shippu.transform.SetParent(canvas.transform);
                 shippu.transform.position = spawnPosition;
@@ -87,58 +79,7 @@ public class swipeController : MonoBehaviour {
                 shippu.GetComponent<moveAnimation>().Target = endPosition;
                 shippu.GetComponent<moveAnimation>().islandSrc = src;
                 shippu.GetComponent<moveAnimation>().islandDest = dest;
-                //if (src.GetComponent<islandController>().owner == "player")
-                //{
-                //    dest.GetComponent<islandController>().playerCapture();
-                //}
             }
         }
     }
-
-    public void touch()
-    {
-        if (Input.touches.Length > 0)
-        {
-            Touch t = Input.GetTouch(0);
-            if (t.phase == TouchPhase.Began)
-            {
-                //save began touch 2d point
-                firstPressPos = new Vector2(t.position.x, t.position.y);
-            }
-            if (t.phase == TouchPhase.Ended)
-            {
-                //save ended touch 2d point
-                secondPressPos = new Vector2(t.position.x, t.position.y);
-
-
-                //create vector from the two points
-                currentSwipe = new Vector3(secondPressPos.x - firstPressPos.x, secondPressPos.y - firstPressPos.y);
-
-                //normalize the 2d vector
-                currentSwipe.Normalize();
-
-                //swipe upwards
-                if (currentSwipe.y > 0 & currentSwipe.x > -0.5f & currentSwipe.x < 0.5f)
-                {
-                    //Debug.Log("up swipe");
-                }
-                //swipe down
-                if (currentSwipe.y < 0 & currentSwipe.x > -0.5f & currentSwipe.x < 0.5f)
-                {
-                    //Debug.Log("down swipe");
-                }
-                //swipe left
-                if (currentSwipe.x < 0 & currentSwipe.y > -0.5f & currentSwipe.y < 0.5f)
-                {
-                    //Debug.Log("left swipe");
-                }
-                //swipe right
-                if (currentSwipe.x > 0 & currentSwipe.y > -0.5f & currentSwipe.y < 0.5f)
-                {
-                    //Debug.Log("right swipe");
-                }
-            }
-        }
-    }
-
 }

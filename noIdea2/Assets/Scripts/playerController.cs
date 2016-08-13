@@ -10,11 +10,8 @@ public class playerController : MonoBehaviour {
 	public int shipPopulation;
 	public GameObject[] islands;
 
-
-
 	void Start(){
         string sceneName = SceneManager.GetActiveScene().name;
-        Debug.Log(sceneName);
         if (sceneName == "Level1"){
             maxPopulation = 30;
         }else {

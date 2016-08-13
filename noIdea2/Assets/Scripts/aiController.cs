@@ -26,20 +26,16 @@ public class aiController : MonoBehaviour {
 
 	void Update(){
         player = canvas.GetComponent<playerController>().islands;
-        Debug.Log(player[0]);
     }
 
     IEnumerator SpawnAndShoot()
     {
         yield return new WaitForSeconds(5);
         while (true){
-            foreach (GameObject island in islands) {
-             
+            foreach (GameObject island in islands) {             
                 island.SetActive(true);
                 yield return new WaitForSeconds(3);
                 island.SetActive(false);
-
-
                 int maxIs = 0;
                 GameObject maxIss = player[0];
                 foreach (GameObject playerIs in player)
@@ -51,12 +47,10 @@ public class aiController : MonoBehaviour {
                 Vector3 endPosition = new Vector3(maxIss.transform.position.x, maxIss.transform.position.y, 0);
                 Quaternion spawnRotation = Quaternion.identity;
                 GameObject shippu = Instantiate(ship) as GameObject;
-                Debug.Log("HEREEE");
                 shippu.GetComponent<shipController>().enabled = false;
                 shippu.transform.SetParent(canvas.transform);
                 shippu.transform.position = spawnPosition;
                 shippu.transform.localRotation = spawnRotation;
-                shippu.tag = "AIFighter";
                 shippu.GetComponent<moveAnimation>().StartPosition = spawnPosition;
                 shippu.GetComponent<moveAnimation>().Target = endPosition;
                 shippu.GetComponent<moveAnimation>().islandSrc = island;

@@ -21,16 +21,7 @@ public class moveAnimation : MonoBehaviour
             float val = slider.GetComponent<allocationSliderText>().allocationSlider.value;
             numShips = islandSrc.GetComponent<islandController>().curr;
             toMove = (int)(val*0.25 * numShips);
-            Debug.Log("VAL:" + toMove);
-            //numShips.RemoveRange(1, toMove);
-            //for (int i = toMove - 1; i > (numShips.Count - toMove); i--)
-            //{
-            //    Destroy(numShips[i]);
-            //}
             islandSrc.GetComponent<islandController>().playerMove(toMove);
-			//islandSrc.GetComponent<islandController>().playerCapture(toMove);
-            Debug.Log(numShips);
-
         }
 
     }
@@ -45,9 +36,6 @@ public class moveAnimation : MonoBehaviour
                 transform.position = Vector3.MoveTowards(transform.position, Target, Time.deltaTime * 100);
                 if (transform.position == Target & transform.position.y != 0)
                 {
-                    Debug.Log(transform.position);
-                    Debug.Log(Target);
-                    Debug.Log(toMove);
                     Destroy(gameObject);
                     islandDest.GetComponent<islandController>().playerCapture(toMove);
 
@@ -58,12 +46,8 @@ public class moveAnimation : MonoBehaviour
                 transform.position = Vector3.MoveTowards(transform.position, Target, Time.deltaTime * 100);
                 if (transform.position == Target & transform.position.y != 0)
                 {
-                    Debug.Log(transform.position);
-                    Debug.Log(Target);
-                    Debug.Log(toMove);
                     Destroy(gameObject);
                     islandDest.GetComponent<islandController>().attacked();
-
                 }
             }
         }

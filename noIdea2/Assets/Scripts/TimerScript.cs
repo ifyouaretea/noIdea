@@ -22,7 +22,6 @@ public class TimerScript : MonoBehaviour {
         {
             Time.timeScale = 0;
             SceneManager.LoadScene("endScene");
-
         }
         counterText.text = seconds.ToString("00");
 	}

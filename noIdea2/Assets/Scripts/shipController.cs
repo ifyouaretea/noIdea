@@ -14,8 +14,6 @@ public class shipController : MonoBehaviour {
 	void Update () {
 	
 	}
-
-    //the sphere gameObject     
         
     void FixedUpdate() {
 		char size = island.GetComponent<islandController>().size;

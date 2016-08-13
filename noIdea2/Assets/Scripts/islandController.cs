@@ -7,15 +7,12 @@ using System.Collections.Generic;
 
 public class islandController : MonoBehaviour
 {
-
 	public GameObject ship;
 	public GameObject island;
 	public GameObject canvas;
-
 	int addy;
 	public int curr;
 	Text current;
-
 	public string owner;//'player', 'ai', 'neutral'
 	public char size;
 	public int capacity;
@@ -43,8 +40,6 @@ public class islandController : MonoBehaviour
         }
         
 		Debug.Log (gameObject.tag);
-        
-        //StartCoroutine (SpawnWaves ());
     }
 
 	void Update(){
@@ -88,7 +83,6 @@ public class islandController : MonoBehaviour
 		gameObject.tag = "Player";
 		gameObject.GetComponent<Image> ().color = Color.green;
 		generate = true;
-//		canvas.GetComponent<playerController> ().maxPopulation += capacity;
 		maxpop = canvas.GetComponent<playerController> ().maxPopulation;
 		StopCoroutine(SpawnWaves());
 		this.StartCoroutine(SpawnWaves());
