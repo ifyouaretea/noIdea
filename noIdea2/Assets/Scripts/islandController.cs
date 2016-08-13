@@ -72,7 +72,7 @@ public class islandController : MonoBehaviour
 				curr = capacity;
 				generate = false;
 			}
-			yield return new WaitForSeconds (1);
+			yield return new WaitForSeconds (1.5f);
 		}
 	}
 
@@ -130,10 +130,10 @@ public class islandController : MonoBehaviour
 	{
 		if (this.size == 's') {
 			this.capacity = 10;
-			addy = 25;
+			addy = 60;
 		} else if (this.size == 'm') {
 			this.capacity = 15;
-			addy = 40;
+			addy = 60;
 		} else if (this.size == 'l') {
 			this.capacity = 20;
 			addy = 60;
